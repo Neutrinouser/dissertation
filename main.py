@@ -25,10 +25,10 @@ kwargs= {
 d = pdeSolver.main(**kwargs)
 
 #Merge input and output dictionaries and store them as a pickle
-data = {'input': kwargs, 'output': d}
+# data = {'input': kwargs, 'output': d}
 
-with open('data.p', 'wb') as fp:
-    pickle.dump(data, fp)
+# with open('data.p', 'wb') as fp:
+#     pickle.dump(data, fp)
 
 # Plotting results
 plt.rc('text', usetex=True)
