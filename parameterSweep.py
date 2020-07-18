@@ -29,20 +29,11 @@ class Features:
             plt.plot(self.timeSet, self.outputDict[j])
         plt.show()
 
-# s = Features(timeSet = np.linspace(0,1,11))
-# d = s.outputDictionary()
-# print(d)
-# s = Features(); 
-# s.plotting(); 
-# print(Features().outputDictionary())
 
 sList = np.linspace(5,12,10); 
 mu_mList = np.linspace(5e-3,5e-2, 10); 
 inputDictionary = dict(s=sList,mu_m=mu_mList); 
 
-#d = [[Features(timeSet=[1.0],s=i,mu_m=j).outputDictionary() for i in sList] for j in mu_mList]
-
-#print(d)
 
 def parameterSweep(inputs):
     keys = list(inputs.keys())
@@ -64,5 +55,3 @@ def parameterSweep(inputs):
 d = parameterSweep(inputDictionary); 
 with open('data.p','wb') as fp:
     pickle.dump(d,fp)
-
-#extra line
