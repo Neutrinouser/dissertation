@@ -11,7 +11,7 @@ except:
     Install it with pip install progress in cmd')
 
 def plotting(**kwargs):
-    d = solver(**kwargs)
+    d = solver(**kwargs); 
     plt.rc('text', usetex=True)
     #First we plot R(t)
     plt.plot(d['t'], list(d['R'].values()) )
@@ -35,7 +35,6 @@ def plotting(**kwargs):
         #plt.xlabel(r"$\displaystyle \rho $")
     plt.savefig('vmc')
     plt.show(block=True) 
-    plotting(d)
     return d
 
 def featureExtraction(**kwargs):
