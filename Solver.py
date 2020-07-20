@@ -10,39 +10,8 @@ except:
     raise Exception('Progress package not installed. \
     Install it with pip install progress in cmd')
 
-def main(**kwargs):
+def plotting(**kwargs):
     d = solver(**kwargs)
-    plotting(d)
-    return d
-
-# def plotting(d):
-#     # Plotting results of the solver.
-#     plt.rc('text', usetex=True)
-#     #First we plot R(t)
-#     plt.plot(d['t'], list(d['R'].values()) )
-#     plt.xlabel(r"$\displaystyle t $"), plt.ylabel(r"$\displaystyle R(t) $")
-#     plt.savefig('R')
-#     plt.show(block=True)
-#     #Then we plot c(rho),m(rho),v(rho) for given time instances (defined in timeSet)
-#     timeSet = np.multiply(d['t'][len(d['t'])-1],[0.0,0.5,1.0]); varNames = ['v','m','c']
-#     i = len(timeSet); j = len(varNames)
-#     for index1, time in enumerate(timeSet):
-#         for index2, varName in enumerate(varNames):
-#             #plot display
-#             plt.subplot(i,j,3*index1+index2+1)
-#             plt.ylabel(r"$\displaystyle "+varName+"$")
-#             plt.title("t="+str(round(time,2)))
-#             #Find nearest time in time grid
-#             k = np.array(list(d[varName].keys()))
-#             time = k[np.argmin(np.abs( k - time ))]
-#             #plot
-#             plt.plot(d['x'], d[varName][time])
-#             #plt.xlabel(r"$\displaystyle \rho $")
-#     plt.savefig('vmc')
-#     plt.show(block=True) 
-
-def plotting(d):
-    # Plotting results of the solver.
     plt.rc('text', usetex=True)
     #First we plot R(t)
     plt.plot(d['t'], list(d['R'].values()) )
@@ -66,6 +35,8 @@ def plotting(d):
         #plt.xlabel(r"$\displaystyle \rho $")
     plt.savefig('vmc')
     plt.show(block=True) 
+    plotting(d)
+    return d
 
 def featureExtraction(**kwargs):
     # d is the output dictionary
@@ -203,4 +174,4 @@ def getTimeGrid(tMax=1, deltaT=2e-3):
     return getGrid(tMax,deltaT)
 
 if __name__ == '__main__':
-    main()
+    plotting()
