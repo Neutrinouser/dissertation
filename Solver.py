@@ -35,7 +35,7 @@ def plotting(**kwargs):
         #plt.xlabel(r"$\displaystyle \rho $")
     plt.savefig('vmc')
     plt.show(block=True) 
-    return d
+    
 
 def featureExtraction(**kwargs):
     # d is the output dictionary
