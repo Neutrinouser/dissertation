@@ -65,13 +65,16 @@ def mInit(spaceGrid, deltaRho=5e-3, labelProp = 0.011 , mInitSpaceInterval = [0.
     out = (rho-a)**2 * (b- rho)**2 *  ((rho>a) & (rho < b))
     return out/np.sum(out) * labelProp/deltaRho
 
+def rInit(cInfty=1.0,Gamma=0.5,s=10.0,d=6.0):
+    return np.sqrt(3/Gamma*(cInfty-d/s))
+
 def gamma(Gamma,m,**kwargs):
     return Gamma * m 
 
 def solver(tMax=1,deltaT=2e-3, #time grid specifications
-         RInit = 1.4,mInit = mInit, #ICs
-         k=1, #number of post-prediction corrections in every iteration
          **kwargs):
+    # Initial radius of the tumour is the steady state radius in the abscence of labelled cells
+    RInit = rInit(**kwargs); 
 
     # Set up spaceGrid and timeGrid
     spaceGrid, kwargs['deltaRho'] = getSpaceGrid(**kwargs)
