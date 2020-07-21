@@ -56,7 +56,7 @@ def featureExtraction(timeSet = [1.0],**kwargs):
         mean  = dRt * np.sum(dRho * dmt) / np.sum(dmt)
         stdev.append(np.sqrt(np.sum( (dRho * dRt - mean)**2 * dmt )/np.sum(dmt)))
     
-    return dict(t=timeSet,features=dict(tumourRadius=radius,frontPosition=mode,dispersion=stdev))
+    return dict(tumourRadius=radius,frontPosition=mode,dispersion=stdev)
     
 def mInit(spaceGrid, deltaRho=5e-3, labelProp = 0.011 , mInitSpaceInterval = [0.7,0.9], **kwargs):
     a = mInitSpaceInterval[0] ; b = mInitSpaceInterval[1]
