@@ -108,7 +108,7 @@ def solver(tMax=1,deltaT=2e-3, #time grid specifications
         # Identified Warnings; abs(R) becomes very big in case of instabilities. 
         if (currentR < 0) | (currentR > 1e+2):
             bar.finish(); 
-            print('Unsuccessful; decreasing space increment.')
+            print('Unsuccessful; decreasing space and time increment.')
             factor = 0.5 
             deltaRho = kwargs['deltaRho'] * factor; 
             kwargs.pop('deltaRho')
