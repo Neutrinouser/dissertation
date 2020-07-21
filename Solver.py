@@ -112,7 +112,7 @@ def solver(tMax=1,deltaT=2e-3, #time grid specifications
             factor = 0.5 
             deltaRho = kwargs['deltaRho'] * factor; 
             kwargs.pop('deltaRho')
-            return solver(tMax,deltaT * factor**2 ,RInit,mInit,k,deltaRho = deltaRho,**kwargs)
+            return solver(tMax,deltaT * factor**2,deltaRho = deltaRho,**kwargs)
 
     bar.finish()
     return dict(c=c,v=v,R=R,m=m,x=spaceGrid,t=timeGrid)
