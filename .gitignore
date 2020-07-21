@@ -3,4 +3,6 @@
 *.p
 *.bak
 *.txt
+*.jpeg
+*.jpg
 __pycache__
