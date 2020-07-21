@@ -37,27 +37,27 @@ def plotting(**kwargs):
     plt.show(block=True) 
     
 
-def featureExtraction(**kwargs):
+def featureExtraction(timeSet = [1.0],**kwargs):
+    # Gives features of microbead distribution at different time instances (in timeSet).
+
     # d is the output dictionary
-    d = solver(**kwargs); 
-    features =  {}
+    d = solver(**kwargs)
+
+    # Change timeSet so that it aligns with the time data available from the numerical solver.
+    k = d['t']; timeSet = [k[np.argmin(np.abs( k - time ))] for time in timeSet]; 
+    
+    # Output features initiated here
+    radius = [] ; mode = [] ; stdev = [] ; 
+
     dRho = d['x']; 
-    for time in d['t']: 
+    for time in timeSet: 
         dmt = d['m'][time]; dRt = d['R'][time]; 
-        mode =  dRho[max([(x,i) for i,x in enumerate(dmt)])[1]] * dRt
-        mean  = np.sum(dRt * dRho * dmt) / np.sum(dmt)
-        stdev = np.sqrt(np.sum( (dRho * dRt - mean)**2 * dmt )/np.sum(dmt))
-
-        features.update({
-            time: {
-                'tumourRadius' : dRt,
-                'frontPosition': mode,
-                'dispersion'   : stdev,
-                # add extra features 
-            }
-        })
-
-    return features
+        radius.append(dRt)
+        mode.append(dRho[max([(x,i) for i,x in enumerate(dmt)])[1]] * dRt)
+        mean  = dRt * np.sum(dRho * dmt) / np.sum(dmt)
+        stdev.append(np.sqrt(np.sum( (dRho * dRt - mean)**2 * dmt )/np.sum(dmt)))
+    
+    return dict(t=timeSet,features=dict(tumourRadius=radius,frontPosition=mode,dispersion=stdev))
     
 def mInit(spaceGrid, deltaRho=5e-3, labelProp = 0.011 , mInitSpaceInterval = [0.7,0.9], **kwargs):
     a = mInitSpaceInterval[0] ; b = mInitSpaceInterval[1]
