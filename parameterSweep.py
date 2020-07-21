@@ -30,7 +30,7 @@ class Features:
         plt.show()
 
 
-sList = np.linspace(5,12,10); 
+sList = np.linspace(7,15,10); 
 mu_mList = np.linspace(5e-3,5e-2, 10); 
 inputDictionary = dict(s=sList,mu_m=mu_mList); 
 
