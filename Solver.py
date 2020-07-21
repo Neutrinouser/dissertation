@@ -2,7 +2,6 @@ import numpy as np
 import scipy.sparse as sp
 import scipy.sparse.linalg as spl
 import matplotlib.pyplot as plt
-from scipy.stats import moment
 
 try:
     from progress.bar import Bar
