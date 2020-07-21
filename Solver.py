@@ -65,7 +65,7 @@ def mInit(spaceGrid, deltaRho=5e-3, labelProp = 0.011 , mInitSpaceInterval = [0.
     out = (rho-a)**2 * (b- rho)**2 *  ((rho>a) & (rho < b))
     return out/np.sum(out) * labelProp/deltaRho
 
-def rInit(cInfty=1.0,Gamma=0.5,s=10.0,d=6.0):
+def rInit(cInfty=1.0,Gamma=0.5,s=10.0,d=6.0,**kwargs):
     return np.sqrt(3/Gamma*(cInfty-d/s))
 
 def gamma(Gamma,m,**kwargs):
